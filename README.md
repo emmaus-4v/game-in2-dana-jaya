@@ -9,7 +9,7 @@ Gemaakt door:
 
 Basis: uitleg, spelen, afgaan en punten
 - [x] maak index.html, style.css en script.js met canvas
-- [ ] teken ruimtescheepje
+- [ ] teken ruimteschip
 - [ ] teken vijanden
 - [ ] beweeg ruimteschip
 - [ ] beweeg vijanden
