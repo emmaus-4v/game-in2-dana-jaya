@@ -57,7 +57,22 @@ var tekenVeld = function () {
  * @param {number} y y-coördinaat
  */
 var tekenVijand = function(x, y) {
-    
+    fill(9, 81, 148);
+    ellipse(400, 400, 300, 300);
+    // ronddraaiende kabine
+    fill("white")
+    rect(275, 275, 250, 250);
+    // pistolen
+    // boven
+    rect(375, 200, 50, 75);
+    // onder
+    rect(375, 525, 50, 75);
+    // rechts
+    rect(525, 375, 75, 50);
+    // links
+    rect(200, 375, 75, 50);
+    fill(9, 81, 148)
+    ellipse(400, 400, 150, 150);
 
 };
 
