@@ -95,8 +95,13 @@ var tekenKogel = function(x, y) {
  */
 var tekenSpeler = function(x, y) {
   fill("white");
-  ellipse(x, y, 50, 150);
-  rect(x, y, 100, 200);
+  rect(x-100, y-40, 200, 100);
+  rect(x-130, y+30, 50, 100);
+  rect(x+80, y+30, 50, 100);
+  fill("black");
+  ellipse(x, y+10, 50, 75);
+  ellipse(x, y)
+ 
 
 };
 
