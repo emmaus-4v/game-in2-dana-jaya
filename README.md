@@ -10,7 +10,8 @@ Gemaakt door:
 Basis: uitleg, spelen, afgaan en punten
 - [x] maak index.html, style.css en script.js met canvas
 - [ ] teken ruimteschip
-- [ ] teken vijanden
+- [x] teken vijanden
+- { } achtergrond erin zetten
 - [ ] beweeg ruimteschip
 - [ ] beweeg vijanden
 - [ ] punten op scherm zetten

@@ -46,7 +46,7 @@ var score = 0; // aantal behaalde punten
  * Tekent het speelveld
  */
 var tekenVeld = function () {
-  fill("purple");
+  fill("white");
   rect(20, 20, width - 2 * 20, height - 2 * 20);
 };
 
@@ -58,21 +58,21 @@ var tekenVeld = function () {
  */
 var tekenVijand = function(x, y) {
     fill(9, 81, 148);
-    ellipse(400, 400, 300, 300);
+    ellipse(400, 400, 200, 200);
     // ronddraaiende kabine
     fill("white")
-    rect(275, 275, 250, 250);
+    rect (325, 325, 150, 150);
     // pistolen
     // boven
-    rect(375, 200, 50, 75);
+    rect(375, 250, 50, 75);
     // onder
-    rect(375, 525, 50, 75);
+    rect(375, 475, 50, 75);
     // rechts
-    rect(525, 375, 75, 50);
+    rect(475, 375, 75, 50);
     // links
-    rect(200, 375, 75, 50);
+    rect(250, 375, 75, 50);
     fill(9, 81, 148)
-    ellipse(400, 400, 150, 150);
+    ellipse(400, 400, 75, 75);
 
 };
 
@@ -95,8 +95,13 @@ var tekenKogel = function(x, y) {
  */
 var tekenSpeler = function(x, y) {
   fill("white");
-  ellipse(x, y, 50, 150);
-  rect(x, y, 100, 200);
+  rect(x-100, y-40, 200, 100);
+  rect(x-130, y+30, 50, 100);
+  rect(x+80, y+30, 50, 100);
+  fill("black");
+  ellipse(x, y+10, 50, 75);
+  ellipse(x, y)
+ 
 
 };
 
