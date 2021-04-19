@@ -93,14 +93,20 @@ var tekenKogel = function(x, y) {
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
-var tekenSpeler = function(x, y) {
-  fill("white");
-  rect(x-100, y-40, 200, 100);
-  rect(x-130, y+30, 50, 100);
-  rect(x+80, y+30, 50, 100);
+
+var tekenSpeler = function(x, y) {  
+  fill("grey");
+  ellipse(x+400, y+230, 100, 100);
+  ellipse(x+800, y+230, 100, 100);
+   fill("lightgrey");
+  rect(x+400, y-40, 400, 200);
+  rect(x+350, y+40, 100, 200);
+  rect(x+750, y+40, 100, 200);
   fill("black");
-  ellipse(x, y+10, 50, 75);
-  ellipse(x, y)
+  ellipse(x+600, y+60, 100, 150);
+  fill("grey");
+  ellipse(x+600, y+60, 60, 110);
+
  
 
 };
