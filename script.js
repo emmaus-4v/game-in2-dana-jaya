@@ -25,8 +25,11 @@ var spelStatus = SPELEN;
 var spelerX = 200; // x-positie van speler
 var spelerY = 100; // y-positie van speler
 
-var kogelX = 0;    // x-positie van kogel
-var kogelY = 0;    // y-positie van kogel
+var kogelX = 200;    // x-positie van kogel
+var kogelY = 100;    // y-positie van kogel
+
+var spelerx = 100; // grote van speler x
+var spelery = 100; // grote van speler y 
 
 var vijandX = 0;   // x-positie van vijand
 var vijandY = 0;   // y-positie van vijand
@@ -83,8 +86,9 @@ var tekenVijand = function(x, y) {
  * @param {number} y y-coördinaat
  */
 var tekenKogel = function(x, y) {
-
-
+    fill("grey");
+ ellipse(x+400, y+230, 100, 100);
+ ellipse(x+800, y+230, spelerx, spelery);
 };
 
 
@@ -96,16 +100,15 @@ var tekenKogel = function(x, y) {
 
 var tekenSpeler = function(x, y) {  
   fill("grey");
-  ellipse(x+400, y+230, 100, 100);
-  ellipse(x+800, y+230, 100, 100);
-   fill("lightgrey");
-  rect(x+400, y-40, 400, 200);
-  rect(x+350, y+40, 100, 200);
-  rect(x+750, y+40, 100, 200);
-  fill("black");
-  ellipse(x+600, y+60, 100, 150);
+  ellipse(x+400, y+230, spelerx, spelery);
+  ellipse(x+800, y+230, spelerx, spelerx);
+   fill("blue");
+  rect(x+400, y-40, spelerx+300, spelery+100);
+  rect(x+350, y+40, spelerx, spelery+100);
+  rect(x+750, y+40, spelerx, spelery+100);
   fill("grey");
-  ellipse(x+600, y+60, 60, 110);
+  ellipse(x+600, y+60, spelerx, spelery+50);
+
 
  
 
