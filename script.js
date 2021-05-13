@@ -28,11 +28,14 @@ var spelerY = 100; // y-positie van speler
 var kogelX = 200;    // x-positie van kogel
 var kogelY = 100;    // y-positie van kogel
 
-var spelerx = 100; // grote van speler x
-var spelery = 100; // grote van speler y 
+var spelerx = 100; // grootte van speler x
+var spelery = 100; // grootte van speler y 
 
-var vijandX = 0;   // x-positie van vijand
-var vijandY = 0;   // y-positie van vijand
+var vijandX = 200;   // x-positie van vijand
+var vijandY = 200;   // y-positie van vijand
+
+var vijandW = 100;  // grootte van vijand x
+var vijandH = 100;  // grootte van vijand y
 
 var score = 0; // aantal behaalde punten
 
@@ -61,21 +64,21 @@ var tekenVeld = function () {
  */
 var tekenVijand = function(x, y) {
     fill(9, 81, 148);
-    ellipse(400, 400, 200, 200);
+    ellipse(vijandX, vijandY, vijandW+10, vijandH+10);
     // ronddraaiende kabine
     fill("white")
-    rect (325, 325, 150, 150);
+    rect (vijandX-35, vijandY-35, vijandW-30, vijandH-30);
     // pistolen
     // boven
-    rect(375, 250, 50, 75);
+    rect(vijandX-15, vijandY-95, vijandW-70, vijandH-40);
     // onder
-    rect(375, 475, 50, 75);
+    rect(vijandX-15, vijandY+35, vijandW-70, vijandH-40);
     // rechts
-    rect(475, 375, 75, 50);
+    rect (vijandX-95, vijandY-20, vijandW-40, vijandH-70);
     // links
-    rect(250, 375, 75, 50);
+    rect(vijandX+35, vijandY-20, vijandW-40, vijandH-70);
     fill(9, 81, 148)
-    ellipse(400, 400, 75, 75);
+    ellipse(vijandX, vijandY, vijandW-50, vijandH-50);
 
 };
 
