@@ -121,8 +121,12 @@ var tekenSpeler = function(x, y) {
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
-var beweegVijand = function() {
-    
+var x = 0
+
+ var beweegVijand = function() {
+    tekenVijand
+
+    x = x + 1
 };
 
 

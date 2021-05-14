@@ -11,7 +11,6 @@ Basis: uitleg, spelen, afgaan en punten
 - [x] maak index.html, style.css en script.js met canvas
 - [x] teken ruimteschip
 - [x] teken vijanden
-- { } achtergrond erin zetten
 - [ ] beweeg ruimteschip (jaya)
 - [ ] beweeg vijanden (dana)
 - [ ] punten op scherm zetten (dana)
