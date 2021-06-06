@@ -119,8 +119,8 @@ var tekenVijand = function(x, y) {
 
     // pistolen
     fill("white")
-    rect(vijandX-15, vijandY-95, vijandW-70, vijandH-40);    // boven
-    rect(vijandX-15, vijandY+35, vijandW-70, vijandH-40);    // onder
+    rect(vijandX-10, vijandY-80, vijandW-80, vijandH-55);    // boven
+    rect(vijandX-10, vijandY+35, vijandW-80, vijandH-55);    // onder
     rect (vijandX-95, vijandY-20, vijandW-40, vijandH-70);   // rechts
     rect(vijandX+35, vijandY-20, vijandW-40, vijandH-70);    // links
 
