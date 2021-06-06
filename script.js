@@ -142,8 +142,8 @@ var tekenVijand = function(x, y) {
  *********************************************************/
 var tekenKogel = function(x, y) {
    fill("grey");
-   ellipse(kogelX1+405, kogelY2, 100, 100);
-   ellipse(kogelX2+765, kogelY2, 100, 100);
+   ellipse(kogelX1, kogelY2, 100, 100);
+   ellipse(kogelX2, kogelY2, 100, 100);
 
   // beqeging kogel
   kogelX1 = spelerX + 400;
