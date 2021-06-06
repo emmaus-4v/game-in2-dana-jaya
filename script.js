@@ -11,33 +11,49 @@
  */
 
 
-
-
 /* ********************************************* */
 /* globale variabelen die je gebruikt in je game */
 /* ********************************************* */
 
-const UITLEG = 0;
-const SPELEN = 1;
-const GAMEOVER = 2;
-var spelStatus = SPELEN;
 
-var spelerX = 200; // x-positie van speler
-var spelerY = 100; // y-positie van speler
+/**************************************************
+** speltoestand **
+***************************************************/
+const UITLEG = 0;           // startscherm
+const SPELEN = 1;           // het spel
+const GAMEOVER = 2;         // eindscherm
 
-var kogelX = 200;    // x-positie van kogel
-var kogelY = 100;    // y-positie van kogel
+var spelStatus = SPELEN;    // wat het spel nu doet
 
-var spelerx = 100; // grootte van speler x
-var spelery = 100; // grootte van speler y 
 
-var vijandX = 200;   // x-positie van vijand
-var vijandY = 200;   // y-positie van vijand
+/**************************************************
+** speler **
+**************************************************/
+var spelerX = 200;          // x-positie van speler
+var spelerY = 100;          // y-positie van speler
+var spelerW = 100;          // breedte van speler x
+var spelerH = 100;          // hoogte van speler y 
 
-var vijandW = 100;  // grootte van vijand x
-var vijandH = 100;  // grootte van vijand y
+var kogelX1 = 200;           // x-positie van kogel 1
+var kogelX2 = 500;           // x-positie van kogel 2
+var kogelY1 = 100;           // y-positie van kogel 1
+var kogelY2 = 100;           // y-positie van kogel 2
 
-var score = 0; // aantal behaalde punten
+
+/************************************************
+** vijand **
+************************************************/
+var vijandX = 200;          // x-positie van vijand
+var vijandY = 200;          // y-positie van vijand
+var vijandW = 100;          // breedte van vijand x
+var vijandH = 100;          // hoogte van vijand y
+
+
+/*************************************************
+** extra **
+*************************************************/
+var score = 0;              // aantal behaalde punten
+
 
 
 
@@ -48,103 +64,104 @@ var score = 0; // aantal behaalde punten
 /* ********************************************* */
 
 
-/**
+
+/**************************************************
  * Tekent het speelveld
- */
+ *************************************************/
 var tekenVeld = function () {
   fill("white");
-  rect(20, 20, width - 2 * 20, height - 2 * 20);
+  rect(20, 20, 1240, 680);
 };
 
 
-/**
- * Tekent de vijand
- * @param {number} x x-coördinaat
- * @param {number} y y-coördinaat
- */
-var tekenVijand = function(x, y) {
-    fill(9, 81, 148);
-    ellipse(vijandX, vijandY, vijandW+10, vijandH+10);
-    // ronddraaiende kabine
-    fill("white")
-    rect (vijandX-35, vijandY-35, vijandW-30, vijandH-30);
-    // pistolen
-    // boven
-    rect(vijandX-15, vijandY-95, vijandW-70, vijandH-40);
-    // onder
-    rect(vijandX-15, vijandY+35, vijandW-70, vijandH-40);
-    // rechts
-    rect (vijandX-95, vijandY-20, vijandW-40, vijandH-70);
-    // links
-    rect(vijandX+35, vijandY-20, vijandW-40, vijandH-70);
-    fill(9, 81, 148)
-    ellipse(vijandX, vijandY, vijandW-50, vijandH-50);
-
-};
-
-
-/**
- * Tekent de kogel of de bal
- * @param {number} x x-coördinaat
- * @param {number} y y-coördinaat
- */
-var tekenKogel = function(x, y) {
-    fill("grey");
- ellipse(x+400, y+230, 100, 100);
- ellipse(x+800, y+230, spelerx, spelery);
-};
-
-
-/**
+/****************************************
  * Tekent de speler
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
- */
+ ****************************************/
 
 var tekenSpeler = function(x, y) {  
+  // speler getekend
   fill("grey");
-  ellipse(x+400, y+230, spelerx, spelery);
-  ellipse(x+800, y+230, spelerx, spelerx);
-   fill("blue");
-  rect(x+400, y-40, spelerx+300, spelery+100);
-  rect(x+350, y+40, spelerx, spelery+100);
-  rect(x+750, y+40, spelerx, spelery+100);
+  ellipse(spelerX+400, spelerY+230, spelerW, spelerH);
+  ellipse(spelerX+800, spelerY+230, spelerW, spelerH);
+
+  fill("blue");
+  rect(spelerX+400, spelerY-40, spelerW+300, spelerH+100);
+  rect(spelerX+350, spelerY+40, spelerW, spelerH+100);
+  rect(spelerX+750, spelerY+40, spelerW, spelerH+100);
+
   fill("grey");
-  ellipse(x+600, y+60, spelerx, spelery+50);
+  ellipse(spelerX+600, spelerY+60, spelerW, spelerH+50);
 
-
+/*
+  // beweging speler                                               // CHECK WAAROM TOETSEN HET NIET DOEN
+  if(keyIsDown(LEFT_ARROW)){
+          spelerX = spelerX - 30;
+  }
+  if (keyIsDown(RIGHT_ARROW)){
+          spelerX = spelerX + 30;
+  }
+  */
  
+};
+
+
+
+/*****************************************************
+ * Tekent de vijand
+ * @param {number} x x-coördinaat
+ * @param {number} y y-coördinaat
+ *****************************************************/
+var tekenVijand = function(x, y) {
+    fill(9, 81, 148);
+    ellipse(vijandX, vijandY, vijandW+10, vijandH+10);
+
+    // pistolen
+    fill("white")
+    rect(vijandX-15, vijandY-95, vijandW-70, vijandH-40);    // boven
+    rect(vijandX-15, vijandY+35, vijandW-70, vijandH-40);    // onder
+    rect (vijandX-95, vijandY-20, vijandW-40, vijandH-70);   // rechts
+    rect(vijandX+35, vijandY-20, vijandW-40, vijandH-70);    // links
+
+    // ronddraaiende kabine
+    rect (vijandX-35, vijandY-35, vijandW-30, vijandH-30);
+    fill(9, 81, 148)
+    ellipse(vijandX, vijandY, vijandW-50, vijandH-50);
+
+    // beweging vijand
 
 };
 
 
-/**
- * Updatet globale variabelen met positie van vijand of tegenspeler
- */
-var x = 0
 
- var beweegVijand = function() {
-    tekenVijand
+/*********************************************************
+ * Tekent de kogel of de bal
+ * @param {number} x x-coördinaat
+ * @param {number} y y-coördinaat
+ *********************************************************/
+var tekenKogel = function(x, y) {
+   fill("grey");
+   ellipse(kogelX1, kogelY2, 100, 100);
+   ellipse(kogelX2, kogelY2, 100, 100);
 
-    x = x + 1
+  // beqeging kogel
+  kogelX1 = spelerX + 400;
+  kogelX2 = spelerX + 800;
+  kogelY1 = spelerY + 230;
+  kogelY2 = spelerY + 230;
+
+/*
+  if (keyIsDown(spatiebalk)){
+    if (kogelY1 > 720) {                                               // + KOGELBREEDTE
+  kogelY1 = kogelY1 + 5;
+  kogelY2 = kogelY2 + 5;
+    }
+  }
+  */
+
 };
 
-
-/**
- * Updatet globale variabelen met positie van kogel of bal
- */
-var beweegKogel = function() {
-
-};
-
-
-/**
- * Kijkt wat de toetsen/muis etc zijn.
- * Updatet globale variabele spelerX en spelerY
- */
-var beweegSpeler = function() {
-
-};
 
 
 /**
@@ -153,6 +170,7 @@ var beweegSpeler = function() {
  */
 var checkVijandGeraakt = function() {
 
+ // X KOGEL = X VIJAND && Y KOGEL = Y VIJAND 
   return false;
 };
 
@@ -164,6 +182,8 @@ var checkVijandGeraakt = function() {
  */
 var checkSpelerGeraakt = function() {
     
+    // ZEGGEN X VIJAND = X SPELER && Y VIJNAD (- GROOTE VIJAND) = Y SPELER (GEEFT GAME OVER)
+
   return false;
 };
 
@@ -178,35 +198,46 @@ var checkGameOver = function() {
 };
 
 
-/**
+/**************************************************************************
+***************************************************************************
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
  * de p5 library, zodra het spel geladen is in de browser
- */
+**************************************************************************
+**************************************************************************/
+
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
+
 }
 
 
-/**
+/**************************************************************************
+***************************************************************************
  * draw
  * de code in deze functie wordt meerdere keren per seconde
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
- */
+***************************************************************************
+**************************************************************************/
+
 function draw() {
+
+    
   switch (spelStatus) {
     case SPELEN:
-      beweegVijand();
-      beweegKogel();
-      beweegSpeler();
-      
+
       if (checkVijandGeraakt()) {
         // punten erbij
         // nieuwe vijand maken
+
+        /* BIJV IF ISVIJNADGERAAKT = TRUE {
+            PUNTEN = PUNTEN +1;
+        }
+        */
       }
       
       if (checkSpelerGeraakt()) {
@@ -216,7 +247,7 @@ function draw() {
 
       tekenVeld();
       tekenVijand(vijandX, vijandY);
-      tekenKogel(kogelX, kogelY);
+      tekenKogel(kogelX1, kogelY1);
       tekenSpeler(spelerX, spelerY);
 
       if (checkGameOver()) {
