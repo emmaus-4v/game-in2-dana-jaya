@@ -121,8 +121,8 @@ var tekenVijand = function(x, y) {
     fill("white")
     rect(vijandX-10, vijandY-80, vijandW-80, vijandH-55);    // boven
     rect(vijandX-10, vijandY+35, vijandW-80, vijandH-55);    // onder
-    rect (vijandX-95, vijandY-20, vijandW-40, vijandH-70);   // rechts
-    rect(vijandX+35, vijandY-20, vijandW-40, vijandH-70);    // links
+    rect (vijandX-80, vijandY-15, vijandW-55, vijandH-80);   // rechts
+    rect(vijandX+35, vijandY-15, vijandW-55, vijandH-80);    // links
 
     // ronddraaiende kabine
     rect (vijandX-35, vijandY-35, vijandW-30, vijandH-30);
