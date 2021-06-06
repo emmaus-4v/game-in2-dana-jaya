@@ -30,9 +30,9 @@ var spelStatus = SPELEN;    // wat het spel nu doet
 ** speler **
 **************************************************/
 var spelerX = 200;          // x-positie van speler
-var spelerY = 100;          // y-positie van speler
-var spelerW = 100;          // breedte van speler x
-var spelerH = 100;          // hoogte van speler y 
+var spelerY = 500;          // y-positie van speler
+var spelerW = 70;          // breedte van speler x
+var spelerH = 70;          // hoogte van speler y 
 
 var kogelX1 = 200;           // x-positie van kogel 1
 var kogelX2 = 500;           // x-positie van kogel 2
@@ -83,16 +83,16 @@ var tekenVeld = function () {
 var tekenSpeler = function(x, y) {  
   // speler getekend
   fill("grey");
-  ellipse(spelerX+400, spelerY+230, spelerW, spelerH);
-  ellipse(spelerX+800, spelerY+230, spelerW, spelerH);
+  ellipse(spelerX+405, spelerY-110, spelerW, spelerH);
+  ellipse(spelerX+765, spelerY-110, spelerW, spelerH);
 
   fill("blue");
-  rect(spelerX+400, spelerY-40, spelerW+300, spelerH+100);
-  rect(spelerX+350, spelerY+40, spelerW, spelerH+100);
-  rect(spelerX+750, spelerY+40, spelerW, spelerH+100);
+  rect(spelerX+400, spelerY-60, spelerW+300, spelerH+100);
+  rect(spelerX+370, spelerY-120, spelerW, spelerH+100);
+  rect(spelerX+730, spelerY-120, spelerW, spelerH+100);
 
   fill("grey");
-  ellipse(spelerX+600, spelerY+60, spelerW, spelerH+50);
+  ellipse(spelerX+590, spelerY+30, spelerW, spelerH+50);
 
 /*
   // beweging speler                                               // CHECK WAAROM TOETSEN HET NIET DOEN
