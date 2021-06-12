@@ -83,16 +83,16 @@ var tekenVeld = function () {
 var tekenSpeler = function(x, y) {  
   // speler getekend
   fill("grey");
-  ellipse(spelerX+405, spelerY-90, spelerW, spelerH);
-  ellipse(spelerX+765, spelerY-90, spelerW, spelerH);
+  ellipse(spelerX+395, spelerY-95, spelerW-20, spelerH-20);
+  ellipse(spelerX+575, spelerY-95, spelerW-20, spelerH-20);
 
   fill("blue");
-  rect(spelerX+400, spelerY-60, spelerW+300, spelerH+75);
-  rect(spelerX+370, spelerY-100, spelerW, spelerH+50);
-  rect(spelerX+730, spelerY-100, spelerW, spelerH+50);
+  rect(spelerX+400, spelerY-70, spelerW+100, spelerH+65);
+  rect(spelerX+370, spelerY-100, spelerW-20, spelerH+30);
+  rect(spelerX+550, spelerY-100, spelerW-20, spelerH+30);
 
   fill("grey");
-  ellipse(spelerX+590, spelerY+10, spelerW, spelerH+50);
+  ellipse(spelerX+485, spelerY, spelerW-20, spelerH+10);
 
 /*
   // beweging speler                                               // CHECK WAAROM TOETSEN HET NIET DOEN
