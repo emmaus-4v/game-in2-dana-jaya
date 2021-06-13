@@ -191,19 +191,19 @@ var bewegingSpeler = function () {
  *****************************************************/
 var tekenVijand = function(x, y) {
     fill("red");
-    ellipse(vijandX, vijandY, vijandW+10, vijandH+10);
+    ellipse(x, y, vijandW+10, vijandH+10);
 
     // pistolen
     fill("white")
-    rect(vijandX-10, vijandY-80, vijandW-80, vijandH-55);    // boven
-    rect(vijandX-10, vijandY+35, vijandW-80, vijandH-55);    // onder
-    rect (vijandX-80, vijandY-15, vijandW-55, vijandH-80);   // rechts
-    rect(vijandX+35, vijandY-15, vijandW-55, vijandH-80);    // links
+    rect(x-10, y-80, vijandW-80, vijandH-55);    // boven
+    rect(x-10, y+35, vijandW-80, vijandH-55);    // onder
+    rect (x-80, y-15, vijandW-55, vijandH-80);   // rechts
+    rect(x+35, y-15, vijandW-55, vijandH-80);    // links
 
     // ronddraaiende kabine
-    rect (vijandX-35, vijandY-35, vijandW-30, vijandH-30);
+    rect (x-35, y-35, vijandW-30, vijandH-30);
     fill("red");
-    ellipse(vijandX, vijandY, vijandW-50, vijandH-50);
+    ellipse(x, y, vijandW-50, vijandH-50);
 
 };
 
