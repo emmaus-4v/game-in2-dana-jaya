@@ -97,13 +97,13 @@ var tekenSpeler = function(x, y) {
 
   // speler getekend
   fill("grey");
-  ellipse(spelerX+395, spelerY-95, spelerW-20, spelerH-20);
-  ellipse(spelerX+575, spelerY-95, spelerW-20, spelerH-20);
+  ellipse(spelerX-25, spelerY-45, spelerW-20, spelerH-20);
+  ellipse(spelerX+155, spelerY-45, spelerW-20, spelerH-20);
 
   fill("blue");
-  rect(spelerX+400, spelerY-70, spelerW+100, spelerH+65);
-  rect(spelerX+370, spelerY-100, spelerW-20, spelerH+30);
-  rect(spelerX+550, spelerY-100, spelerW-20, spelerH+30);
+  rect(spelerX-20, spelerY-20, spelerW+100, spelerH+65);
+  rect(spelerX-50, spelerY-50, spelerW-20, spelerH+30);
+  rect(spelerX+130, spelerY-50, spelerW-20, spelerH+30);
 
   fill("grey");
   ellipse(spelerX+485, spelerY, spelerW-20, spelerH+10);
