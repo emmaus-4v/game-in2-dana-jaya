@@ -74,21 +74,7 @@ var spelBeginnen = false;
 /*      functies die je gebruikt in je game      */
 /* ********************************************* */
 
-/**************************************************
- ** SET UP **
- *************************************************/
 
-function setup() {
-  frameRate(30);
-  createCanvas(1000, 1000);
-  background(220, 225, 255);
-  noStroke();
-
-  for (var i = 0; i < 5; i++) {
-    var vijand = {x:random(0+veldBreedte, veldBreedte-(vijandW/2)), y:0-(vijandH/2)}
-    vijanden.push(vijand);
-  }
-}
 /**************************************************
  * Tekent het speelveld
  *************************************************/
@@ -117,16 +103,6 @@ var tekenSpeler = function(x, y) {
 
   fill("grey");
   ellipse(spelerX+485, spelerY, spelerW-20, spelerH+10);
-
-  // beweging speler                                               // CHECK WAAROM TOETSEN HET NIET DOEN
-  
-  if( keyIsDown(37)){
-          spelerX = spelerX - 30;
-  }
-  if (keyIsDown(39)){
-          spelerX = spelerX + 30;
-  }
-
  
 };
 
@@ -352,11 +328,17 @@ var checkGameOver = function() {
 **************************************************************************
 **************************************************************************/
 
+
 function setup() {
-  createCanvas(1280, 720);
+  frameRate(30);
+  createCanvas(1000, 1000);
+  background(220, 225, 255);
+  noStroke();
 
-  background('blue');
-
+  for (var i = 0; i < 5; i++) {
+    var vijand = {x:random(0+veldBreedte, veldBreedte-(vijandW/2)), y:0-(vijandH/2)}
+    vijanden.push(vijand);
+  }
 }
 
 
@@ -373,30 +355,30 @@ function draw() {
     
   switch (spelStatus) {
     case 'SPELEN':
+        bewegingSpeler();
+        if (checkVijandGeraakt()) {
+            // punten erbij
+            // nieuwe vijand maken
 
-      if (checkVijandGeraakt()) {
-        // punten erbij
-        // nieuwe vijand maken
-
-        /* BIJV IF ISVIJNADGERAAKT = TRUE {
-            PUNTEN = PUNTEN +1;
+            /* BIJV IF ISVIJNADGERAAKT = TRUE {
+                PUNTEN = PUNTEN +1;
+            }
+            */
         }
-        */
-      }
-      
-      if (checkSpelerGeraakt()) {
-        // leven eraf of gezondheid verlagen
-        // eventueel: nieuwe speler maken
-      }
+        
+        if (checkSpelerGeraakt()) {
+            // leven eraf of gezondheid verlagen
+            // eventueel: nieuwe speler maken
+        }
 
-      tekenVeld();
-      tekenVijand(vijandX, vijandY);
-      tekenSpeler(spelerX, spelerY);
+        tekenVeld();
+        tekenVijand(vijandX, vijandY);
+        tekenSpeler(spelerX, spelerY);
 
-      if (checkGameOver()) {
-        spelStatus = 'GAMEOVER';
-      }
-      break;
+        if (checkGameOver()) {
+            spelStatus = 'GAMEOVER';
+        }
+        break;
     }
 }
 
