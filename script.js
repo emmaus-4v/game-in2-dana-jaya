@@ -127,11 +127,11 @@ var bewegingVijand = function(){
         eppo.maxy = eppo.maxy + snelheidVijand;
         if ( eppo.y + (vijandH/2) > veldHoogte ){
             eppo.y = 0-(vijandH/2);
-            eppo.miny = eppo.y + (vijandH/2);
+            eppo.miny = eppo.y - (vijandH/2);
             eppo.maxy = eppo.y + (vijandH/2);
             eppo.x = random(0, veldBreedte-(vijandW/2))
-            eppo.miny = eppo.x + (vijandW/2);
-            eppo.maxy = eppo.x - (vijandW/2);
+            eppo.miny = eppo.x - (vijandW/2);
+            eppo.maxy = eppo.x + (vijandW/2);
         }
     }
 }
