@@ -43,6 +43,7 @@ var spelerX = 200;          // x-positie van speler
 var spelerY = 500;          // y-positie van speler
 var spelerW = 70;          // breedte van speler x
 var spelerH = 70;          // hoogte van speler y 
+var spelerObject = { minx: spelerX - (spelerW/2),maxx: spelerX + (spelerW/2),maxy: spelerY + (spelerH/2),miny: spelerY - (spelerH/2)}
 
 var snelheidX = 10;
 
@@ -106,7 +107,7 @@ var tekenSpeler = function(x, y) {
   rect(spelerX+130, spelerY-50, spelerW-20, spelerH+30);
 
   fill("grey");
-  ellipse(spelerX+485, spelerY, spelerW-20, spelerH+10);
+  ellipse(spelerX+65, spelerY+50, spelerW-20, spelerH+10);
  
 };
 
@@ -122,9 +123,15 @@ var bewegingVijand = function(){
     for (var i=0; i < vijanden.length; i++){
         var eppo = vijanden[i];
         eppo.y = eppo.y + snelheidVijand;
+        eppo.miny = eppo.miny + snelheidVijand;
+        eppo.maxy = eppo.maxy + snelheidVijand;
         if ( eppo.y + (vijandH/2) > veldHoogte ){
             eppo.y = 0-(vijandH/2);
+            eppo.miny = eppo.y + (vijandH/2);
+            eppo.maxy = eppo.y + (vijandH/2);
             eppo.x = random(0, veldBreedte-(vijandW/2))
+            eppo.miny = eppo.x + (vijandW/2);
+            eppo.maxy = eppo.x - (vijandW/2);
         }
     }
 }
@@ -183,6 +190,30 @@ var bewegingSpeler = function () {
   if (spelerX > veldBreedte - (spelerW / 2)) {
     spelerX = veldBreedte - (spelerW / 2);
   }
+  spelerObject.minx = spelerX - (spelerW/2);
+  spelerObject.maxx = spelerX + (spelerW/2);
+
+}
+
+/******
+ * test of we elkaar raken
+ */
+
+ var rakenElkaar = function (obj1, obj2){
+     var xoverlap = obj1.minx <= obj2.maxx && obj1.maxx >= obj2.minx;
+     var yoverlap = obj1.miny <= obj2.maxy && obj1.maxy >= obj2.miny;
+     return( xoverlap && yoverlap);
+ }
+
+var raaktSpelerIets = function(){
+    var geraakt = false;
+    for (var i=0; i < vijanden.length(); i++){
+        if ( rakenElkaar(spelerObject, vijanden[i])){
+            geraakt = true;
+            break;
+        }
+    }
+    return( geraakt );
 }
 
 /*****************************************************
@@ -351,7 +382,9 @@ function setup() {
   //noStroke();
 
   for (var i = 0; i < 5; i++) {
-    var vijand = {x:random(0, veldBreedte-(vijandW/2)), y:random(0-(vijandH/2), -500)}
+      var calcx = random(0, veldBreedte-(vijandW/2));
+      var calcy = random(0-(vijandH/2), -500);
+    var vijand = {x:calcx, y:calcy, minx: calcx - (vijandW/2), maxx: calcx+(vijandW/2), miny:calcy-(vijandH/2),maxy:(calcy+(vijandH/2))}
     vijanden.push(vijand);
   }
 }
@@ -391,7 +424,7 @@ function draw() {
         tekenVijanden();
         tekenSpeler(spelerX, spelerY);
 
-        if (checkGameOver()) {
+        if (raaktSpelerIets()) {
             spelStatus = 'GAMEOVER';
         }
         break;
