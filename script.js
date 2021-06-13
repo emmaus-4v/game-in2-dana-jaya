@@ -350,7 +350,7 @@ function setup() {
   //noStroke();
 
   for (var i = 0; i < 5; i++) {
-    var vijand = {x:random(0, veldBreedte-(vijandW/2)), y:0-(vijandH/2)}
+    var vijand = {x:random(0, veldBreedte-(vijandW/2)), y:random(0-(vijandH/2), -500)}
     vijanden.push(vijand);
   }
 }
