@@ -124,6 +124,7 @@ var bewegingVijand = function(){
         eppo.y = eppo.y + snelheidVijand;
         if ( eppo.y + (vijandH/2) > veldHoogte ){
             eppo.y = 0-(vijandH/2);
+            eppo.x = random(0, veldBreedte-(vijandW/2))
         }
     }
 }
