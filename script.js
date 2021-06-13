@@ -262,11 +262,9 @@ var startScherm = function () {
 
   if (mouseIsPressed) {
     if (mouseX < 615 && mouseX > 385 && mouseY < 545 && mouseY > 455) {
-      spelBeginnen = true;
+      spelStatus = "SPELEN"
     }
   }
-
-  return spelBeginnen;
 }
 
 
