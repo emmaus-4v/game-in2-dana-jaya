@@ -287,7 +287,8 @@ var eindScherm = function () {
 
     if (mouseIsPressed) {
         if (mouseX < 615 && mouseX > 385 && mouseY < 545 && mouseY > 455) {
-        spelStatus = "INTRO"
+            opnieuw();
+            spelStatus = "INTRO"
         }
     }
 
@@ -329,11 +330,9 @@ var gameOver = function () {
 //  DATA RESETTEN: snelheid, aantal meters, positie vijand
 // ---------------------------------------------------------
 var opnieuw = function () {
-  snelheidY = 5;
-  aantalMeters = 0;
-  for (var i = 0; i < vijanden.length; i++) {
-    vijanden[i].y = random(-80, -800);
-  }
+    snelheidY = 5;
+    aantalMeters = 0;
+    maakVijanden();
 
 }
 
@@ -386,14 +385,18 @@ function setup() {
   background(220, 225, 255);
   //noStroke();
 
-  for (var i = 0; i < 5; i++) {
-      var calcx = random(0, veldBreedte-(vijandW/2));
-      var calcy = random(0-(vijandH/2), -500);
-    var vijand = {x:calcx, y:calcy, minx: calcx - (vijandW/2), maxx: calcx+(vijandW/2), miny:calcy-(vijandH/2),maxy:(calcy+(vijandH/2))}
-    vijanden.push(vijand);
-  }
+    maakVijanden();
 }
 
+var maakVijanden = function(){
+    vijanden = [];
+    for (var i = 0; i < 5; i++) {
+        var calcx = random(0, veldBreedte-(vijandW/2));
+        var calcy = random(0-(vijandH/2), -500);
+        var vijand = {x:calcx, y:calcy, minx: calcx - (vijandW/2), maxx: calcx+(vijandW/2), miny:calcy-(vijandH/2),maxy:(calcy+(vijandH/2))}
+        vijanden.push(vijand);
+    }
+}
 
 /**************************************************************************
 ***************************************************************************
