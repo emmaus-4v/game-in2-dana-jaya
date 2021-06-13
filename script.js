@@ -284,6 +284,14 @@ var eindScherm = function () {
   textSize(25);
   text("opnieuw proberen", 400, 510,400,500);
 
+   if (mouseIsPressed) {
+    if (mouseX < 615 && mouseX > 385 && mouseY < 545 && mouseY > 455) {
+      spelStatus = "INTRO"
+    }
+  }
+}
+
+
   // ----- behaalde score -----
   textSize(50);
   text("score:", 430, 300,400,500);
