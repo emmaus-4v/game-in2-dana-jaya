@@ -11,11 +11,10 @@ Basis: uitleg, spelen, afgaan en punten
 - [x] maak index.html, style.css en script.js met canvas
 - [x] teken ruimteschip
 - [x] teken vijanden
-- [ ] beweeg ruimteschip (jaya)
-- [ ] beweeg vijanden (dana)
-- [ ] punten op scherm zetten (dana)
-- [ ] punten kunnen scoren (jaya)
-- [ ] uitlegscherm
+- [x] beweeg ruimteschip
+- [x] beweeg vijanden  
+- [x] maak een startscherm
+- [x] maak een eindscherm
 
 Uitbreiding: *bedenk iets, bijvoorbeeld meer tegenstanders*
 - [ ] leven eraf als vijand je raakt
