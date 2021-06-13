@@ -23,7 +23,7 @@ const UITLEG = 0;           // startscherm
 const SPELEN = 1;           // het spel
 const GAMEOVER = 2;         // eindscherm
 
-/*************************************/
+/**************************************************/
 
 var spelStatus = 'INTRO';    // wat het spel nu doet
 
@@ -63,9 +63,8 @@ var snelheidY = 5;
 
 /*************************************************
 ** extra **
-*************************************************
-var score = 0;              // aantal behaalde punten
-*/
+*************************************************/
+
 const veldHoogte = 720;
 const veldBreedte = 1280;
 const LEFT_ARROW = 37;
@@ -84,11 +83,6 @@ var tekenVeld = function () {
   fill("white");
   rect(20, 20, 1240, 680);
 };
-
-/*************************************************
- * score gaat omhoog
- ************************************************/
-var timer = 0;
 
 
 /****************************************
@@ -249,20 +243,20 @@ var tekenVijand = function(x, y) {
 //   STARTSCHERM: uitleg werkinng spel en startknop
 // --------------------------------------------------
 var startScherm = function () {
-  background(209, 235, 255);
+  background(52, 125, 235);
   opnieuw();
 
   // ----- titel ------
   
   fill(random(100, 255), random(100, 255), random(100, 255));
   textSize(100);
-  text("enemydodger", 305, 100,400,500);
+  text("Enemydodger", 350, 100, 400,500);
 
   // ----- startknop -----
-  rect(400, 455, 200, 90);
+  rect(500, 455, 200, 90);
   fill(0, 0, 0);
   textSize(45);
-  text("START", 425, 515,400,500);
+  text("START", 525, 475,400,500);
   
 
   if (mouseIsPressed) {
@@ -277,17 +271,17 @@ var startScherm = function () {
 //   EINDSCHERM: behaalde score en startknop
 // -------------------------------------------
 var eindScherm = function () {
-  background(209, 235, 255);
+  background(52, 125, 235);
 
   textSize(100);
-  text("GAME OVER", 175, 150, 400, 500);
+  text("GAME OVER", 475, 150, 400, 500);
 
     // ----- startknop -----
     fill(random(100, 255), random(100, 255), random(100, 255));
-    rect(385, 455, 230, 90);
+    rect(500, 455, 230, 90);
     fill(0, 0, 0);
     textSize(25);
-    text("opnieuw proberen", 400, 510,400,500);
+    text("opnieuw proberen", 515, 475,400,500);
 
 
     if (mouseIsPressed) {
@@ -297,12 +291,12 @@ var eindScherm = function () {
         }
     }
 
-  // ----- behaalde score -----
-  textSize(50);
-  text("score:", 430, 300,400,500);
-  text(aantalMeters.toString(), 440, 375,400,500);
-
+    
 }
+
+
+
+
 
 
 // ------------------------------------
@@ -338,7 +332,7 @@ var opnieuw = function () {
     snelheidY = 5;
     aantalMeters = 0;
     maakVijanden();
-    timer = 0;
+   
 }
 
 
@@ -414,8 +408,6 @@ var drawSpelen = function(){
     tekenVeld();
     tekenVijanden();
     tekenSpeler(spelerX, spelerY);
-
-    timer = timer + 1;
 
     if (raaktSpelerIets()) {
         spelStatus = 'GAMEOVER';
