@@ -23,7 +23,17 @@ const UITLEG = 0;           // startscherm
 const SPELEN = 1;           // het spel
 const GAMEOVER = 2;         // eindscherm
 
-var spelStatus = SPELEN;    // wat het spel nu doet
+/*************************************/
+
+var spelStatus = 'SPELEN';    // wat het spel nu doet
+
+
+/*************************************************
+** aantal meter **
+*************************************************/ 
+var frameTeller = 0;
+var aantalMeters = 0;
+
 
 
 /**************************************************
@@ -34,10 +44,7 @@ var spelerY = 500;          // y-positie van speler
 var spelerW = 70;          // breedte van speler x
 var spelerH = 70;          // hoogte van speler y 
 
-var kogelX1 = 200;           // x-positie van kogel 1
-var kogelX2 = 500;           // x-positie van kogel 2
-var kogelY1 = 100;           // y-positie van kogel 1
-var kogelY2 = 100;           // y-positie van kogel 2
+var snelheidX = 10;
 
 
 /************************************************
@@ -47,24 +54,41 @@ var vijandX = 200;          // x-positie van vijand
 var vijandY = 200;          // y-positie van vijand
 var vijandW = 100;          // breedte van vijand x
 var vijandH = 100;          // hoogte van vijand y
+var vijanden = [];
+
+
+var snelheidY = 5;
 
 
 /*************************************************
 ** extra **
-*************************************************/
+*************************************************
 var score = 0;              // aantal behaalde punten
-
-
-
-
-
+*/
+const veldBreedte = 1000;
+const LEFT_ARROW = 37;
+const RIGHT_ARROW = 39;
+var spelBeginnen = false;
 
 /* ********************************************* */
 /*      functies die je gebruikt in je game      */
 /* ********************************************* */
 
+/**************************************************
+ ** SET UP **
+ *************************************************/
 
+function setup() {
+  frameRate(30);
+  createCanvas(1000, 1000);
+  background(220, 225, 255);
+  noStroke();
 
+  for (var i = 0; i < 5; i++) {
+    var vijand = {x:random(0+veldBreedte, veldBreedte-(vijandW/2)), y:0-(vijandH/2)}
+    vijanden.push(vijand);
+  }
+}
 /**************************************************
  * Tekent het speelveld
  *************************************************/
@@ -83,30 +107,93 @@ var tekenVeld = function () {
 var tekenSpeler = function(x, y) {  
   // speler getekend
   fill("grey");
-  ellipse(spelerX+405, spelerY-110, spelerW, spelerH);
-  ellipse(spelerX+765, spelerY-110, spelerW, spelerH);
+  ellipse(spelerX+395, spelerY-95, spelerW-20, spelerH-20);
+  ellipse(spelerX+575, spelerY-95, spelerW-20, spelerH-20);
 
   fill("blue");
-  rect(spelerX+400, spelerY-60, spelerW+300, spelerH+100);
-  rect(spelerX+370, spelerY-120, spelerW, spelerH+100);
-  rect(spelerX+730, spelerY-120, spelerW, spelerH+100);
+  rect(spelerX+400, spelerY-70, spelerW+100, spelerH+65);
+  rect(spelerX+370, spelerY-100, spelerW-20, spelerH+30);
+  rect(spelerX+550, spelerY-100, spelerW-20, spelerH+30);
 
   fill("grey");
-  ellipse(spelerX+590, spelerY+30, spelerW, spelerH+50);
+  ellipse(spelerX+485, spelerY, spelerW-20, spelerH+10);
 
-/*
+
   // beweging speler                                               // CHECK WAAROM TOETSEN HET NIET DOEN
-  if(keyIsDown(LEFT_ARROW)){
+  
+  if( keyIsDown(37)){
           spelerX = spelerX - 30;
   }
-  if (keyIsDown(RIGHT_ARROW)){
+  if (keyIsDown(39)){
           spelerX = spelerX + 30;
   }
-  */
+
  
 };
 
 
+
+
+
+
+// ---------------------------------------------------
+//    BEWEGING SPELER: pijlen en niet buiten scherm
+// ---------------------------------------------------
+var bewegingSpeler = function () {
+
+  // ----- pijlen op scherm -----
+  fill(255, 255, 255);
+  rect(435, 875, 50, 20); // --- pijl 1 ---
+  triangle(435, 905, 410, 885, 435, 865);
+
+  rect(515, 875, 50, 20); // --- pijl 2 ---
+  triangle(565, 905, 590, 885, 565, 865);
+
+
+  if (mouseIsPressed) {
+    if (mouseX < 500 && mouseX > 410 && mouseY < 905 && mouseY > 865) {
+      spelerX = spelerX - snelheidX;
+
+      fill(random(100, 255), random(100, 255), random(100, 255));
+      rect(435, 875, 50, 20);
+      triangle(435, 905, 410, 885, 435, 865);
+    }
+
+    if (mouseX < 590 && mouseX > 515 && mouseY < 905 && mouseY > 865) {
+      spelerX = spelerX + snelheidX;
+
+      fill(random(100, 255), random(100, 255), random(100, 255));
+      rect(515, 875, 50, 20);
+      triangle(565, 905, 590, 885, 565, 865);
+    }
+  }
+
+  // ----- pijltjestoetsen op toetsenbord -----
+  if (keyIsPressed) {
+    if (keyCode === LEFT_ARROW) {
+      spelerX = spelerX - snelheidX;
+
+      fill(random(100, 255), random(100, 255), random(100, 255));
+      rect(435, 875, 50, 20);
+      triangle(435, 905, 410, 885, 435, 865);
+    }
+    if (keyCode === RIGHT_ARROW) {
+      spelerX = spelerX + snelheidX;
+
+      fill(random(100, 255), random(100, 255), random(100, 255));
+      rect(515, 875, 50, 20);
+      triangle(565, 905, 590, 885, 565, 865);
+    }
+  }
+
+  // ----- speler niet buiten scherm -----
+  if (spelerX < 0) {
+    spelerX = 0;
+  }
+  if (spelerX > 1000 - spelerW * 1 / 2) {
+    spelerX = 1000 - spelerW * 1 / 2;
+  }
+}
 
 /*****************************************************
  * Tekent de vijand
@@ -114,7 +201,7 @@ var tekenSpeler = function(x, y) {
  * @param {number} y y-coördinaat
  *****************************************************/
 var tekenVijand = function(x, y) {
-    fill(9, 81, 148);
+    fill("red");
     ellipse(vijandX, vijandY, vijandW+10, vijandH+10);
 
     // pistolen
@@ -126,43 +213,103 @@ var tekenVijand = function(x, y) {
 
     // ronddraaiende kabine
     rect (vijandX-35, vijandY-35, vijandW-30, vijandH-30);
-    fill(9, 81, 148)
+    fill("red");
     ellipse(vijandX, vijandY, vijandW-50, vijandH-50);
 
-    // beweging vijand
-
 };
 
 
+// --------------------------------------------------
+//   STARTSCHERM: uitleg werkinng spel en startknop
+// --------------------------------------------------
+var startScherm = function () {
+  background(209, 235, 255);
+  opnieuw();
 
-/*********************************************************
- * Tekent de kogel of de bal
- * @param {number} x x-coördinaat
- * @param {number} y y-coördinaat
- *********************************************************/
-var tekenKogel = function(x, y) {
-   fill("grey");
-   ellipse(kogelX1, kogelY2, 100, 100);
-   ellipse(kogelX2, kogelY2, 100, 100);
+  // ----- titel ------
+  
+  fill(random(100, 255), random(100, 255), random(100, 255));
+  textSize(100);
+  text("enemydodger", 305, 100,400,500);
 
-  // beqeging kogel
-  kogelX1 = spelerX + 400;
-  kogelX2 = spelerX + 800;
-  kogelY1 = spelerY + 230;
-  kogelY2 = spelerY + 230;
+  // ----- startknop -----
+  rect(400, 455, 200, 90);
+  fill(0, 0, 0);
+  textSize(45);
+  text("START", 425, 515,400,500);
+  
 
-/*
-  if (keyIsDown(spatiebalk)){
-    if (kogelY1 > 720) {                                               // + KOGELBREEDTE
-  kogelY1 = kogelY1 + 5;
-  kogelY2 = kogelY2 + 5;
+  if (mouseIsPressed) {
+    if (mouseX < 615 && mouseX > 385 && mouseY < 545 && mouseY > 455) {
+      spelBeginnen = true;
     }
   }
-  */
 
-};
+  return spelBeginnen;
+}
 
 
+// -------------------------------------------
+//   EINDSCHERM: behaalde score en startknop
+// -------------------------------------------
+var eindScherm = function () {
+  background(209, 235, 255);
+
+  textSize(100);
+  text("GAME OVER", 175, 150,400,500);
+
+  // ----- startknop -----
+  fill(random(100, 255), random(100, 255), random(100, 255));
+  rect(385, 455, 230, 90);
+  fill(0, 0, 0);
+  textSize(25);
+  text("opnieuw proberen", 400, 510,400,500);
+
+  // ----- behaalde score -----
+  textSize(50);
+  text("score:", 430, 300,400,500);
+  text(aantalMeters.toString(), 440, 375,400,500);
+
+}
+
+
+// ------------------------------------
+//   GAME OVER: het spel is afgelopen
+// ------------------------------------
+var gameOver = function () {
+  var returnWaarde = "verder";
+  var i = 0;
+
+  while (returnWaarde === "verder" && i < vijanden.length) {
+    if (spelerX < vijanden[i].x + 110 &&
+      spelerX + 75 > vijanden[i].x - 15 &&
+      spelerY + 20 < vijanden[i].y + 15 &&
+      spelerY + 20 > vijanden[i].y - 30 ||
+      spelerX < vijanden[i].x + 110 &&
+      spelerX + 75 > vijanden[i].x - 15 &&
+      spelerY + 125 < vijanden[i].y + 15 &&
+      spelerY + 125 > vijanden[i].y - 30) {
+      returnWaarde = "af";
+    }
+
+    i++;
+  }
+
+  return returnWaarde;
+}
+
+
+// ---------------------------------------------------------
+//  DATA RESETTEN: snelheid, aantal meters, positie vijand
+// ---------------------------------------------------------
+var opnieuw = function () {
+  snelheidY = 5;
+  aantalMeters = 0;
+  for (var i = 0; i < vijanden.length; i++) {
+    vijanden[i].y = random(-80, -800);
+  }
+
+}
 
 /**
  * Zoekt uit of de vijand is geraakt
@@ -207,10 +354,8 @@ var checkGameOver = function() {
 **************************************************************************/
 
 function setup() {
-  // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
-  // Kleur de achtergrond blauw, zodat je het kunt zien
   background('blue');
 
 }
@@ -228,7 +373,7 @@ function draw() {
 
     
   switch (spelStatus) {
-    case SPELEN:
+    case 'SPELEN':
 
       if (checkVijandGeraakt()) {
         // punten erbij
@@ -247,12 +392,13 @@ function draw() {
 
       tekenVeld();
       tekenVijand(vijandX, vijandY);
-      tekenKogel(kogelX1, kogelY1);
       tekenSpeler(spelerX, spelerY);
 
       if (checkGameOver()) {
-        spelStatus = GAMEOVER;
+        spelStatus = 'GAMEOVER';
       }
       break;
-  }
+    }
 }
+
+
