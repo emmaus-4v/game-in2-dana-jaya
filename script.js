@@ -92,6 +92,9 @@ var tekenVeld = function () {
  ****************************************/
 
 var tekenSpeler = function(x, y) {  
+    fill("red")
+    rect(spelerX-20, spelerY-20, 40, 40);
+
   // speler getekend
   fill("grey");
   ellipse(spelerX+395, spelerY-95, spelerW-20, spelerH-20);
