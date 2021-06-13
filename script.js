@@ -118,7 +118,6 @@ var tekenSpeler = function(x, y) {
   fill("grey");
   ellipse(spelerX+485, spelerY, spelerW-20, spelerH+10);
 
-
   // beweging speler                                               // CHECK WAAROM TOETSEN HET NIET DOEN
   
   if( keyIsDown(37)){
