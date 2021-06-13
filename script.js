@@ -91,7 +91,6 @@ var tekenVeld = function () {
 var timer = 0;
 
 
-
 /****************************************
  * Tekent de speler
  * @param {number} x x-coördinaat
@@ -281,7 +280,7 @@ var eindScherm = function () {
   background(209, 235, 255);
 
   textSize(100);
-  text("GAME OVER", 175, 150,400,500);
+  text("GAME OVER", 175, 150, 400, 500);
 
     // ----- startknop -----
     fill(random(100, 255), random(100, 255), random(100, 255));
@@ -342,28 +341,7 @@ var opnieuw = function () {
     timer = 0;
 }
 
-/**
- * Zoekt uit of de vijand is geraakt
- * @returns {boolean} true als vijand is geraakt
- */
-var checkVijandGeraakt = function() {
 
- // X KOGEL = X VIJAND && Y KOGEL = Y VIJAND 
-  return false;
-};
-
-
-/**
- * Zoekt uit of de speler is geraakt
- * bijvoorbeeld door botsing met vijand
- * @returns {boolean} true als speler is geraakt
- */
-var checkSpelerGeraakt = function() {
-    
-    // ZEGGEN X VIJAND = X SPELER && Y VIJNAD (- GROOTE VIJAND) = Y SPELER (GEEFT GAME OVER)
-
-  return false;
-};
 
 
 /**
@@ -431,26 +409,13 @@ function draw() {
 var drawSpelen = function(){
     bewegingSpeler();
     bewegingVijand();
-    if (checkVijandGeraakt()) {
-        // punten erbij
-        // nieuwe vijand maken
-
-        /* BIJV IF ISVIJNADGERAAKT = TRUE {
-            PUNTEN = PUNTEN +1;
-        }
-        */
-    }
     
-    if (checkSpelerGeraakt()) {
-        // leven eraf of gezondheid verlagen
-        // eventueel: nieuwe speler maken
-    }
 
     tekenVeld();
     tekenVijanden();
     tekenSpeler(spelerX, spelerY);
 
-    timer + 1;
+    timer = timer + 1;
 
     if (raaktSpelerIets()) {
         spelStatus = 'GAMEOVER';
