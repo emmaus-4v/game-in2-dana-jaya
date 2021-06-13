@@ -401,33 +401,43 @@ function setup() {
 function draw() {
 
     
-  switch (spelStatus) {
-    case 'SPELEN':
-        bewegingSpeler();
-        bewegingVijand();
-        if (checkVijandGeraakt()) {
-            // punten erbij
-            // nieuwe vijand maken
+    switch (spelStatus) {
+        case 'SPELEN':
+            drawSpelen();
+            break;
+        case 'GAMEOVER':
+            eindScherm();
+            break;
+        case "INTRO":
+            //drawIntro();
+            break;
+    }
+}
 
-            /* BIJV IF ISVIJNADGERAAKT = TRUE {
-                PUNTEN = PUNTEN +1;
-            }
-            */
-        }
-        
-        if (checkSpelerGeraakt()) {
-            // leven eraf of gezondheid verlagen
-            // eventueel: nieuwe speler maken
-        }
+var drawSpelen = function(){
+    bewegingSpeler();
+    bewegingVijand();
+    if (checkVijandGeraakt()) {
+        // punten erbij
+        // nieuwe vijand maken
 
-        tekenVeld();
-        tekenVijanden();
-        tekenSpeler(spelerX, spelerY);
-
-        if (raaktSpelerIets()) {
-            spelStatus = 'GAMEOVER';
+        /* BIJV IF ISVIJNADGERAAKT = TRUE {
+            PUNTEN = PUNTEN +1;
         }
-        break;
+        */
+    }
+    
+    if (checkSpelerGeraakt()) {
+        // leven eraf of gezondheid verlagen
+        // eventueel: nieuwe speler maken
+    }
+
+    tekenVeld();
+    tekenVijanden();
+    tekenSpeler(spelerX, spelerY);
+
+    if (raaktSpelerIets()) {
+        spelStatus = 'GAMEOVER';
     }
 }
 
