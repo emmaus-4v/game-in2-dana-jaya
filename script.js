@@ -207,7 +207,7 @@ var bewegingSpeler = function () {
 
 var raaktSpelerIets = function(){
     var geraakt = false;
-    for (var i=0; i < vijanden.length(); i++){
+    for (var i=0; i < vijanden.length; i++){
         if ( rakenElkaar(spelerObject, vijanden[i])){
             geraakt = true;
             break;
