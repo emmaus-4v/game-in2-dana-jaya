@@ -55,7 +55,7 @@ var vijandY = 200;          // y-positie van vijand
 var vijandW = 100;          // breedte van vijand x
 var vijandH = 100;          // hoogte van vijand y
 var vijanden = [];
-
+var snelheidVijand = 5;
 
 var snelheidY = 5;
 
@@ -118,6 +118,16 @@ var tekenSpeler = function(x, y) {
 // ---------------------------------------------------
 //    BEWEGING SPELER: pijlen en niet buiten scherm
 // ---------------------------------------------------
+var bewegingVijand = function(){
+    for (var i=0; i < vijanden.length; i++){
+        var eppo = vijanden[i];
+        eppo.y = eppo.y + snelheidVijand;
+        if ( eppo.y + (vijandH/2) > veldHoogte ){
+            eppo.y = 0-(vijandH/2);
+        }
+    }
+}
+
 var bewegingSpeler = function () {
 
   // ----- pijlen op scherm -----
@@ -360,6 +370,7 @@ function draw() {
   switch (spelStatus) {
     case 'SPELEN':
         bewegingSpeler();
+        bewegingVijand();
         if (checkVijandGeraakt()) {
             // punten erbij
             // nieuwe vijand maken
@@ -376,13 +387,20 @@ function draw() {
         }
 
         tekenVeld();
-        tekenVijand(vijandX, vijandY);
+        tekenVijanden();
         tekenSpeler(spelerX, spelerY);
 
         if (checkGameOver()) {
             spelStatus = 'GAMEOVER';
         }
         break;
+    }
+}
+
+var tekenVijanden = function(){
+    for (var i=0; i < vijanden.length; i++){
+        var vijand = vijanden[i];
+        tekenVijand(vijand.x, vijand.y);
     }
 }
 
