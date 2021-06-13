@@ -277,20 +277,19 @@ var eindScherm = function () {
   textSize(100);
   text("GAME OVER", 175, 150,400,500);
 
-  // ----- startknop -----
-  fill(random(100, 255), random(100, 255), random(100, 255));
-  rect(385, 455, 230, 90);
-  fill(0, 0, 0);
-  textSize(25);
-  text("opnieuw proberen", 400, 510,400,500);
+    // ----- startknop -----
+    fill(random(100, 255), random(100, 255), random(100, 255));
+    rect(385, 455, 230, 90);
+    fill(0, 0, 0);
+    textSize(25);
+    text("opnieuw proberen", 400, 510,400,500);
 
-   if (mouseIsPressed) {
-    if (mouseX < 615 && mouseX > 385 && mouseY < 545 && mouseY > 455) {
-      spelStatus = "INTRO"
+
+    if (mouseIsPressed) {
+        if (mouseX < 615 && mouseX > 385 && mouseY < 545 && mouseY > 455) {
+        spelStatus = "INTRO"
+        }
     }
-  }
-}
-
 
   // ----- behaalde score -----
   textSize(50);
