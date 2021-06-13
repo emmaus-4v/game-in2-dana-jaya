@@ -65,7 +65,8 @@ var snelheidY = 5;
 *************************************************
 var score = 0;              // aantal behaalde punten
 */
-const veldBreedte = 1000;
+const veldHoogte = 720;
+const veldBreedte = 1280;
 const LEFT_ARROW = 37;
 const RIGHT_ARROW = 39;
 var spelBeginnen = false;
@@ -165,8 +166,8 @@ var bewegingSpeler = function () {
   if (spelerX < 0) {
     spelerX = 0;
   }
-  if (spelerX > 1000 - spelerW * 1 / 2) {
-    spelerX = 1000 - spelerW * 1 / 2;
+  if (spelerX > veldBreedte - (spelerW / 2)) {
+    spelerX = veldBreedte - (spelerW / 2);
   }
 }
 
@@ -331,9 +332,9 @@ var checkGameOver = function() {
 
 function setup() {
   frameRate(30);
-  createCanvas(1000, 1000);
+  createCanvas(veldBreedte, veldHoogte);
   background(220, 225, 255);
-  noStroke();
+  //noStroke();
 
   for (var i = 0; i < 5; i++) {
     var vijand = {x:random(0+veldBreedte, veldBreedte-(vijandW/2)), y:0-(vijandH/2)}
