@@ -25,7 +25,7 @@ const GAMEOVER = 2;         // eindscherm
 
 /*************************************/
 
-var spelStatus = 'SPELEN';    // wat het spel nu doet
+var spelStatus = 'INTRO';    // wat het spel nu doet
 
 
 /*************************************************
@@ -409,7 +409,7 @@ function draw() {
             eindScherm();
             break;
         case "INTRO":
-            //drawIntro();
+            startScherm();
             break;
     }
 }
