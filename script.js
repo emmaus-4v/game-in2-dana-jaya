@@ -85,6 +85,12 @@ var tekenVeld = function () {
   rect(20, 20, 1240, 680);
 };
 
+/*************************************************
+ * score gaat omhoog
+ ************************************************/
+var timer = 0;
+
+
 
 /****************************************
  * Tekent de speler
@@ -333,7 +339,7 @@ var opnieuw = function () {
     snelheidY = 5;
     aantalMeters = 0;
     maakVijanden();
-
+    timer = 0;
 }
 
 /**
@@ -443,6 +449,8 @@ var drawSpelen = function(){
     tekenVeld();
     tekenVijanden();
     tekenSpeler(spelerX, spelerY);
+
+    timer + 1;
 
     if (raaktSpelerIets()) {
         spelStatus = 'GAMEOVER';
